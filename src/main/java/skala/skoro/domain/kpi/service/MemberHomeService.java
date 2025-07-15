@@ -3,7 +3,6 @@ package skala.skoro.domain.kpi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import skala.skoro.domain.employee.dto.EmployeeSummaryResponse;
-import skala.skoro.domain.employee.repository.EmployeeRepository;
 import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
 import skala.skoro.domain.kpi.dto.MyContributionResponse;

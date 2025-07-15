@@ -16,8 +16,8 @@ import skala.skoro.domain.period.repository.PeriodRepository;
 public class EvaluationFeedbackService {
 
     private final EvaluationFeedbackRepository evaluationFeedbackRepository;
+
     private final TeamEvaluationRepository teamEvaluationRepository;
-    private final PeriodRepository periodRepository;
 
     @Transactional
     public void saveFeedback(EvaluationFeedbackSaveRequest request, Employee employee) {

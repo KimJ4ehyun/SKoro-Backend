@@ -24,15 +24,7 @@ import static skala.skoro.global.exception.ErrorCode.*;
 @RequiredArgsConstructor
 public class EmployeeService {
 
-    private final PeriodRepository periodRepository;
-
     private final EmployeeRepository employeeRepository;
-
-    private final TeamEvaluationRepository teamEvaluationRepository;
-
-    private final FinalEvaluationRepository finalEvaluationRepository;
-
-    private final NonFinalEvaluationRepository nonFinalEvaluationRepository;
 
     private final TempEvaluationRepository tempEvaluationRepository;
 
