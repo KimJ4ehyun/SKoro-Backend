@@ -17,3 +17,5 @@
   - EvaluationFeedback, EvaluationFeedbackSummary에서 periodId 제거
   
 ## 🗄️ ERD
+
+![ERD](./assets/erd.png)
