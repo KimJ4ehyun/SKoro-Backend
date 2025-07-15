@@ -30,7 +30,6 @@ public class EvaluationFeedbackService {
         EvaluationFeedback feedback = EvaluationFeedback.builder()
                 .content(request.getContent())
                 .teamEvaluation(teamEvaluation)
-                .period(period)
                 .build();
         evaluationFeedbackRepository.save(feedback);
     }

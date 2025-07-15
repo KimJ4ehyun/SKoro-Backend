@@ -3,7 +3,6 @@ package skala.skoro.domain.evaluation.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import skala.skoro.domain.common.BaseEntity;
-import skala.skoro.domain.period.entity.Period;
 
 @Entity
 @Table(name = "evaluation_feedback_summaries")
@@ -24,19 +23,4 @@ public class EvaluationFeedbackSummary extends BaseEntity {
 
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "period_id")
-    private Period period;
-
-    @Builder
-    public EvaluationFeedbackSummary(TeamEvaluation teamEvaluation, String content, Period period) {
-        this.teamEvaluation = teamEvaluation;
-        this.content = content;
-        this.period = period;
-    }
-
-    public void updateContent(String content) {
-        this.content = content;
-    }
 }
