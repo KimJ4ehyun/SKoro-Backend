@@ -6,7 +6,7 @@ spring:
   application:
     name: SKoro
   profiles:
-    active: prod
+    active: local
 
 springdoc:
   api-docs:
