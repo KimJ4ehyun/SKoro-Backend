@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import skala.skoro.domain.auth.dto.CustomUserDetails;
 import skala.skoro.domain.employee.dto.*;
 import skala.skoro.domain.employee.service.EmployeeService;
-import skala.skoro.domain.evaluation.dto.EmployeeNonFinalEvaluationResponse;
 
 import java.util.List;
 

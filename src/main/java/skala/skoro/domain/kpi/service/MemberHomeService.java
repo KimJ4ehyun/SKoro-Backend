@@ -20,8 +20,9 @@ import java.util.List;
 public class MemberHomeService {
 
     private final TaskRepository taskRepository;
-    private final EmployeeRepository employeeRepository;
+
     private final NonFinalEvaluationRepository nonFinalEvaluationRepository;
+
     private final FinalEvaluationRepository finalEvaluationRepository;
 
     public List<MyTaskResponse> getMyTasks(String empNo) {

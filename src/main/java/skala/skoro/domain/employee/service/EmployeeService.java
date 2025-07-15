@@ -8,7 +8,6 @@ import skala.skoro.domain.employee.entity.Employee;
 import skala.skoro.domain.employee.entity.Role;
 import skala.skoro.domain.employee.entity.Team;
 import skala.skoro.domain.employee.repository.EmployeeRepository;
-import skala.skoro.domain.evaluation.entity.TeamEvaluation;
 import skala.skoro.domain.evaluation.entity.TempEvaluation;
 import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
