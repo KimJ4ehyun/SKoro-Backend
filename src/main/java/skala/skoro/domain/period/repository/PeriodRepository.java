@@ -41,12 +41,12 @@ public interface PeriodRepository extends JpaRepository<Period, Long> {
         WHERE e.empNo = :empNo
           AND (
                 (te.period.isFinal = true AND EXISTS (
-                    SELECT 1 FROM FinalEvaluationReport fer
+                    SELECT 1 FROM FinalEvaluation fer
                     WHERE fer.teamEvaluation = te AND fer.employee.empNo = :empNo
                 ))
              OR
                 (te.period.isFinal = false AND EXISTS (
-                    SELECT 1 FROM FeedbackReport fr
+                    SELECT 1 FROM NonFinalEvaluation fr
                     WHERE fr.teamEvaluation = te AND fr.employee.empNo = :empNo
                 ))
           )
