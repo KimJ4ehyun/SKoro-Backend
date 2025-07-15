@@ -14,7 +14,7 @@ public class EmployeeFinalEvaluationResponse {
     private String profileImage;
     private String position;
     private Integer contributionRate;
-    private Integer aiAnnualAchievementRate;
+    private Integer achievementRate;
     private Double score;
     private Integer ranking;
 
@@ -26,7 +26,7 @@ public class EmployeeFinalEvaluationResponse {
                 .profileImage(employee.getProfileImage())
                 .position(employee.getPosition())
                 .contributionRate(finalEvaluation.getContributionRate())
-                .aiAnnualAchievementRate(finalEvaluation.getAiAnnualAchievementRate())
+                .achievementRate(finalEvaluation.getAchievementRate())
                 .score(finalEvaluation.getScore())
                 .ranking(finalEvaluation.getRanking())
                 .build();
