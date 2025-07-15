@@ -22,48 +22,22 @@ public class TeamEvaluation extends BaseEntity {
     @Column(name = "team_evaluation_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private TeamEvaluationStatus status;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "middle_report", columnDefinition = "JSON")
+    private Map<String, Object> middleReport;
+
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "JSON")
     private Map<String, Object> report;
-
-    @Enumerated(EnumType.STRING)
-    private TeamEvaluationStatus status;
 
     private Integer averageAchievementRate;
 
     private String relativePerformance;
 
     private Integer yearOverYearGrowth;
-
-    @Column(name = "ai_team_overall_analysis_comment", columnDefinition = "TEXT")
-    private String aiTeamOverallAnalysisComment;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_collaboration_matrix", columnDefinition = "JSON")
-    private Map<String, Object> aiCollaborationMatrix;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_team_comparison", columnDefinition = "JSON")
-    private Map<String, Object> aiTeamComparison;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_team_coaching", columnDefinition = "JSON")
-    private Map<String, Object> aiTeamCoaching;
-
-    @Column(name = "overall_comment", columnDefinition = "TEXT")
-    private String overallComment;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_risk", columnDefinition = "JSON")
-    private Map<String, Object> aiRisk;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_plan", columnDefinition = "JSON")
-    private Map<String, Object> aiPlan;
-
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "middle_report", columnDefinition = "JSON")
-    private Map<String, Object> middleReport;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
