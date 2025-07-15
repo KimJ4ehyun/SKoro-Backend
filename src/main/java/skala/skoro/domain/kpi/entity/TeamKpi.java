@@ -25,10 +25,6 @@ public class TeamKpi extends BaseEntity {
 
     private Integer weight;
 
-    @Column(name = "evaluation_type")
-    @Enumerated(EnumType.STRING)
-    private EvaluationType evaluationType;
-
     @Column(name = "achievement_rate")
     private Integer achievementRate;
 
