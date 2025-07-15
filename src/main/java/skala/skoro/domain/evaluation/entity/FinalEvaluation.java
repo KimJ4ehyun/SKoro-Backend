@@ -34,6 +34,9 @@ public class FinalEvaluation extends BaseEntity {
     @Column(name = "contribution_rate")
     private Integer contributionRate;
 
+    @Column(name = "achievement_rate")
+    private Integer achievementRate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_evaluation_id")
     private TeamEvaluation teamEvaluation;
