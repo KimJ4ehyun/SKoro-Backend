@@ -8,7 +8,12 @@
 - 테스트: 변경되는 코드 및 새로운 기능에 대한 충분한 테스트를 작성하여 안정성을 확보합니다.
 - 일관성: 프로젝트 전반에 걸쳐 코딩 스타일 및 네이밍 규칙을 일관되게 적용합니다.
 - 커밋 메시지: 명확하고 이해하기 쉬운 커밋 메시지를 작성하며, 한 번에 하나의 기능만 커밋합니다.
-- 
-## ✅ 개선 사항
 
+## ✅ 개선 사항
+- Entity 명 변경
+  - FinalEvaluationReport -> FinalEvaluation
+  - FeedbackReport -> NonFinalEvaluation
+- 불필요한 연관 관계 제거
+  - EvaluationFeedback, EvaluationFeedbackSummary에서 periodId 제거
+  
 ## 🗄️ ERD
