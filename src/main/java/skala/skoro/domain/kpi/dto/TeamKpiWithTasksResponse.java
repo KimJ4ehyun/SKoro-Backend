@@ -23,7 +23,7 @@ public class TeamKpiWithTasksResponse {
                 .teamKpiId(teamKpi.getId())
                 .kpiName(teamKpi.getKpiName())
                 .goal(teamKpi.getKpiDescription())
-                .achievementRate(teamKpi.getAiKpiProgressRate())
+                .achievementRate(teamKpi.getAchievementRate())
                 .weight(teamKpi.getWeight())
                 .grade(GradeResponse.from(grade))
                 .tasks(tasks)

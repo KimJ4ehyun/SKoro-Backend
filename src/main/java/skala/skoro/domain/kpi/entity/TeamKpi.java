@@ -29,11 +29,8 @@ public class TeamKpi extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EvaluationType evaluationType;
 
-    @Column(name = "ai_kpi_progress_rate")
-    private Integer aiKpiProgressRate;
-
-    @Column(name = "ai_kpi_analysis_comment", columnDefinition = "TEXT")
-    private String aiKpiAnalysisComment;
+    @Column(name = "achievement_rate")
+    private Integer achievementRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")

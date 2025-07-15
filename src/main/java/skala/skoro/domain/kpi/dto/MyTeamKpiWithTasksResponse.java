@@ -41,7 +41,7 @@ public class MyTeamKpiWithTasksResponse {
                 .teamKpiId(teamKpi.getId())
                 .teamKpiName(teamKpi.getKpiName())
                 .teamKpiGoal(teamKpi.getKpiDescription())
-                .teamKpiAchievementRate(teamKpi.getAiKpiProgressRate())
+                .teamKpiAchievementRate(teamKpi.getAchievementRate())
                 .teamKpiWeight(teamKpi.getWeight())
                 .TeamKpiGrade(GradeResponse.from(teamKpiGrade))
                 .taskId(task.getId())
