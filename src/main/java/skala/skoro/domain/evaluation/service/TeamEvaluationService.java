@@ -122,11 +122,11 @@ public class TeamEvaluationService {
 
                     if (period.getIsFinal()) {
                         members.forEach(employee ->
-                                finalEvaluationReportRepository.save(FinalEvaluationReport.of(teamEvaluation, employee))
+                                finalEvaluationReportRepository.save(FinalEvaluation.of(teamEvaluation, employee))
                         );
                     } else {
                         members.forEach(employee ->
-                                feedbackReportRepository.save(FeedbackReport.of(teamEvaluation, employee))
+                                feedbackReportRepository.save(NonFinalEvaluation.of(teamEvaluation, employee))
                         );
                     }
                 });

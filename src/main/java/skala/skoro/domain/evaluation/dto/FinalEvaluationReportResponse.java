@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import skala.skoro.domain.evaluation.entity.FinalEvaluationReport;
-import skala.skoro.domain.evaluation.entity.TeamEvaluation;
+import skala.skoro.domain.evaluation.entity.FinalEvaluation;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class FinalEvaluationReportResponse {
     private Long finalEvaluationReportId;
     private Map<String, Object> report;
 
-    public static FinalEvaluationReportResponse from(FinalEvaluationReport finalEvaluationReport) {
-        return new FinalEvaluationReportResponse(finalEvaluationReport.getId(), finalEvaluationReport.getReport());
+    public static FinalEvaluationReportResponse from(FinalEvaluation finalEvaluation) {
+        return new FinalEvaluationReportResponse(finalEvaluation.getId(), finalEvaluation.getReport());
     }
 }

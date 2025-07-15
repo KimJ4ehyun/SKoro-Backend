@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import skala.skoro.domain.evaluation.entity.FeedbackReport;
+import skala.skoro.domain.evaluation.entity.NonFinalEvaluation;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class FeedbackReportResponse {
     private Long feedbackReportId;
     private Map<String, Object> report;
 
-    public static FeedbackReportResponse from(FeedbackReport feedbackReport) {
-        return new FeedbackReportResponse(feedbackReport.getId(), feedbackReport.getReport());
+    public static FeedbackReportResponse from(NonFinalEvaluation nonFinalEvaluation) {
+        return new FeedbackReportResponse(nonFinalEvaluation.getId(), nonFinalEvaluation.getReport());
     }
 }

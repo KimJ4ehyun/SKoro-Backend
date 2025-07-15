@@ -2,7 +2,7 @@ package skala.skoro.domain.employee.dto;
 
 import lombok.*;
 import skala.skoro.domain.employee.entity.Employee;
-import skala.skoro.domain.evaluation.entity.FinalEvaluationReport;
+import skala.skoro.domain.evaluation.entity.FinalEvaluation;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,17 +18,17 @@ public class EmployeeFinalEvaluationResponse {
     private Double score;
     private Integer ranking;
 
-    public static EmployeeFinalEvaluationResponse from(FinalEvaluationReport finalEvaluationReport) {
-        Employee employee = finalEvaluationReport.getEmployee();
+    public static EmployeeFinalEvaluationResponse from(FinalEvaluation finalEvaluation) {
+        Employee employee = finalEvaluation.getEmployee();
         return EmployeeFinalEvaluationResponse.builder()
                 .empNo(employee.getEmpNo())
                 .empName(employee.getEmpName())
                 .profileImage(employee.getProfileImage())
                 .position(employee.getPosition())
-                .contributionRate(finalEvaluationReport.getContributionRate())
-                .aiAnnualAchievementRate(finalEvaluationReport.getAiAnnualAchievementRate())
-                .score(finalEvaluationReport.getScore())
-                .ranking(finalEvaluationReport.getRanking())
+                .contributionRate(finalEvaluation.getContributionRate())
+                .aiAnnualAchievementRate(finalEvaluation.getAiAnnualAchievementRate())
+                .score(finalEvaluation.getScore())
+                .ranking(finalEvaluation.getRanking())
                 .build();
     }
 }
