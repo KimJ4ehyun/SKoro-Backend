@@ -2,10 +2,7 @@ package skala.skoro.domain.kpi.dto;
 
 import lombok.*;
 import skala.skoro.domain.employee.entity.Employee;
-import skala.skoro.domain.kpi.entity.Grade;
-import skala.skoro.domain.kpi.entity.Task;
-import skala.skoro.domain.kpi.entity.TaskSummary;
-import skala.skoro.domain.kpi.entity.TeamKpi;
+import skala.skoro.domain.kpi.entity.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,8 +28,9 @@ public class MyTeamKpiWithTasksResponse {
     private LocalDate taskEndDate;
     private EmployeeSimple employee;
     private GradeResponse taskGrade;
-    private Integer taskAchievementRate; // aiAchievementRate
-    private Integer taskContributionScore; // aiContributionScore
+    private Integer taskAchievementRate;
+    private Integer taskContributionScore;
+    private GradeLevel assessedGrade;
 
     private List<EmployeeSimple> participants;
 
@@ -53,8 +51,9 @@ public class MyTeamKpiWithTasksResponse {
                 .taskEndDate(task.getEndDate())
                 .employee(EmployeeSimple.from(employee))
                 .taskGrade(GradeResponse.from(taskGrade))
-                .taskAchievementRate(taskSummary != null ? taskSummary.getAiAchievementRate() : null)
-                .taskContributionScore(taskSummary != null ? taskSummary.getAiContributionScore() : null)
+                .taskAchievementRate(taskSummary != null ? taskSummary.getAchievementRate() : null)
+                .taskContributionScore(taskSummary != null ? taskSummary.getContributionScore() : null)
+                .assessedGrade(taskSummary != null ? taskSummary.getAssessedGrade() : null)
                 .participants(participants)
                 .build();
     }

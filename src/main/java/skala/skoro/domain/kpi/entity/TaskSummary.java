@@ -23,18 +23,15 @@ public class TaskSummary extends BaseEntity {
     @Column(name = "task_performance", columnDefinition = "TEXT")
     private String taskPerformance;
 
-    @Column(name = "ai_contribution_score")
-    private Integer aiContributionScore;
+    @Column(name = "contribution_score")
+    private Integer contributionScore;
 
-    @Column(name = "ai_achievement_rate")
-    private Integer aiAchievementRate;
+    @Column(name = "achievement_rate")
+    private Integer achievementRate;
 
-    @Column(name = "ai_assessed_grade")
+    @Column(name = "assessed_grade")
     @Enumerated(EnumType.STRING)
-    private GradeLevel aiAssessedGrade;
-
-    @Column(name = "ai_analysis_comment_task", columnDefinition = "TEXT")
-    private String aiAnalysisCommentTask;
+    private GradeLevel assessedGrade;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")

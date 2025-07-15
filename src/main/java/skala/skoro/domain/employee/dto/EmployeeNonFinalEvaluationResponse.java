@@ -14,7 +14,7 @@ public class EmployeeNonFinalEvaluationResponse {
     private String profileImage;
     private String position;
     private Integer contributionRate;
-    private Integer aiAchievementRate;
+    private Integer achievementRate;
     private String attitude;
     private Integer ranking;
 
@@ -26,7 +26,7 @@ public class EmployeeNonFinalEvaluationResponse {
                 .profileImage(employee.getProfileImage())
                 .position(employee.getPosition())
                 .contributionRate(nonFinalEvaluation.getContributionRate())
-                .aiAchievementRate(nonFinalEvaluation.getAchievementRate())
+                .achievementRate(nonFinalEvaluation.getAchievementRate())
                 .attitude(nonFinalEvaluation.getAttitude())
                 .ranking(nonFinalEvaluation.getRanking())
                 .build();

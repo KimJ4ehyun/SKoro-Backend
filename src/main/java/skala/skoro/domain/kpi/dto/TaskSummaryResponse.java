@@ -21,8 +21,8 @@ public class TaskSummaryResponse {
     private LocalDate endDate;
     private EmployeeSimple employee;
     private GradeResponse grade;
-    private Integer achievementRate; // aiAchievementRate
-    private Integer contributionScore; // aiContributionScore
+    private Integer achievementRate;
+    private Integer contributionScore;
 
     public static TaskSummaryResponse of(Task task, Employee employee, TaskSummary taskSummary, Grade grade) {
         return TaskSummaryResponse.builder()
@@ -35,8 +35,8 @@ public class TaskSummaryResponse {
                 .endDate(task.getEndDate())
                 .employee(EmployeeSimple.from(employee))
                 .grade(GradeResponse.from(grade))
-                .achievementRate(taskSummary != null ? taskSummary.getAiAchievementRate() : null)
-                .contributionScore(taskSummary != null ? taskSummary.getAiContributionScore() : null)
+                .achievementRate(taskSummary != null ? taskSummary.getAchievementRate() : null)
+                .contributionScore(taskSummary != null ? taskSummary.getContributionScore() : null)
                 .build();
     }
 }
