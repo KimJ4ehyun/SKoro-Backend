@@ -9,7 +9,6 @@ import skala.skoro.domain.evaluation.entity.EvaluationFeedback;
 import skala.skoro.domain.evaluation.entity.TeamEvaluation;
 import skala.skoro.domain.evaluation.repository.EvaluationFeedbackRepository;
 import skala.skoro.domain.evaluation.repository.TeamEvaluationRepository;
-import skala.skoro.domain.period.repository.PeriodRepository;
 
 @Service
 @RequiredArgsConstructor

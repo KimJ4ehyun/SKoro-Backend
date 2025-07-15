@@ -9,11 +9,7 @@ import skala.skoro.domain.employee.entity.Role;
 import skala.skoro.domain.employee.entity.Team;
 import skala.skoro.domain.employee.repository.EmployeeRepository;
 import skala.skoro.domain.evaluation.entity.TempEvaluation;
-import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
-import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
-import skala.skoro.domain.evaluation.repository.TeamEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.TempEvaluationRepository;
-import skala.skoro.domain.period.repository.PeriodRepository;
 import skala.skoro.global.exception.CustomException;
 import java.util.List;
 
