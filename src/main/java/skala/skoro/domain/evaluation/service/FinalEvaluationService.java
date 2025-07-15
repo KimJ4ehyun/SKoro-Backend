@@ -7,18 +7,18 @@ import skala.skoro.domain.employee.entity.Employee;
 import skala.skoro.domain.employee.service.EmployeeService;
 import skala.skoro.domain.evaluation.dto.FinalEvaluationReportResponse;
 import skala.skoro.domain.evaluation.entity.TeamEvaluation;
-import skala.skoro.domain.evaluation.repository.FinalEvaluationReportRepository;
+import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
 import skala.skoro.global.exception.CustomException;
 import static skala.skoro.global.exception.ErrorCode.FINAL_EVALUATION_REPORT_DOES_NOT_EXIST;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class FinalEvaluationReportService {
+public class FinalEvaluationService {
 
     private final EmployeeService employeeService;
 
-    private final FinalEvaluationReportRepository finalEvaluationReportRepository;
+    private final FinalEvaluationRepository finalEvaluationRepository;
 
     private final TeamEvaluationService teamEvaluationService;
 
@@ -37,7 +37,7 @@ public class FinalEvaluationReportService {
 
         TeamEvaluation teamEvaluation = teamEvaluationService.findTeamEvaluationByEmployeeAndPeriodId(employee, periodId);
 
-        return finalEvaluationReportRepository
+        return finalEvaluationRepository
                 .findByTeamEvaluationAndEmployee(teamEvaluation, employee)
                 .map(FinalEvaluationReportResponse::from)
                 .orElseThrow(() -> new CustomException(FINAL_EVALUATION_REPORT_DOES_NOT_EXIST));

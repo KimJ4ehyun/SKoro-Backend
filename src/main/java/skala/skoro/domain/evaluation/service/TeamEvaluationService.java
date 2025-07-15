@@ -9,8 +9,8 @@ import skala.skoro.domain.employee.repository.TeamRepository;
 import skala.skoro.domain.employee.service.EmployeeService;
 import skala.skoro.domain.evaluation.dto.*;
 import skala.skoro.domain.evaluation.entity.*;
-import skala.skoro.domain.evaluation.repository.FeedbackReportRepository;
-import skala.skoro.domain.evaluation.repository.FinalEvaluationReportRepository;
+import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
+import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.TeamEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.TempEvaluationRepository;
 import skala.skoro.domain.period.entity.Period;
@@ -36,9 +36,9 @@ public class TeamEvaluationService {
 
     private final TeamRepository teamRepository;
 
-    private final FinalEvaluationReportRepository finalEvaluationReportRepository;
+    private final FinalEvaluationRepository finalEvaluationRepository;
 
-    private final FeedbackReportRepository feedbackReportRepository;
+    private final NonFinalEvaluationRepository nonFinalEvaluationRepository;
 
     private final TempEvaluationRepository tempEvaluationRepository;
 
@@ -122,11 +122,11 @@ public class TeamEvaluationService {
 
                     if (period.getIsFinal()) {
                         members.forEach(employee ->
-                                finalEvaluationReportRepository.save(FinalEvaluation.of(teamEvaluation, employee))
+                                finalEvaluationRepository.save(FinalEvaluation.of(teamEvaluation, employee))
                         );
                     } else {
                         members.forEach(employee ->
-                                feedbackReportRepository.save(NonFinalEvaluation.of(teamEvaluation, employee))
+                                nonFinalEvaluationRepository.save(NonFinalEvaluation.of(teamEvaluation, employee))
                         );
                     }
                 });

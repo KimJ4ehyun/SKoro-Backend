@@ -10,7 +10,7 @@ import skala.skoro.domain.kpi.dto.MyContributionResponse;
 import java.util.List;
 import java.util.Optional;
 
-public interface FeedbackReportRepository extends JpaRepository<NonFinalEvaluation, Long> {
+public interface NonFinalEvaluationRepository extends JpaRepository<NonFinalEvaluation, Long> {
     List<NonFinalEvaluation> findByTeamEvaluationIdOrderByRankingAsc(Long teamEvaluationId);
 
     Optional<NonFinalEvaluation> findByTeamEvaluationAndEmployee(TeamEvaluation teamEvaluation, Employee employee);

@@ -10,8 +10,8 @@ import skala.skoro.domain.employee.entity.Team;
 import skala.skoro.domain.employee.repository.EmployeeRepository;
 import skala.skoro.domain.evaluation.entity.TeamEvaluation;
 import skala.skoro.domain.evaluation.entity.TempEvaluation;
-import skala.skoro.domain.evaluation.repository.FeedbackReportRepository;
-import skala.skoro.domain.evaluation.repository.FinalEvaluationReportRepository;
+import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
+import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.TeamEvaluationRepository;
 import skala.skoro.domain.evaluation.repository.TempEvaluationRepository;
 import skala.skoro.domain.period.repository.PeriodRepository;
@@ -31,9 +31,9 @@ public class EmployeeService {
 
     private final TeamEvaluationRepository teamEvaluationRepository;
 
-    private final FinalEvaluationReportRepository finalEvaluationReportRepository;
+    private final FinalEvaluationRepository finalEvaluationRepository;
 
-    private final FeedbackReportRepository feedbackReportRepository;
+    private final NonFinalEvaluationRepository nonFinalEvaluationRepository;
 
     private final TempEvaluationRepository tempEvaluationRepository;
 
@@ -75,7 +75,7 @@ public class EmployeeService {
 
         TeamEvaluation teamEvaluation = findTeamEvaluationByTeamAndPeriod(team, periodId);
 
-        return finalEvaluationReportRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
+        return finalEvaluationRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
                     .map(EmployeeFinalEvaluationResponse::from)
                     .toList();
     }
@@ -90,7 +90,7 @@ public class EmployeeService {
 
         TeamEvaluation teamEvaluation = findTeamEvaluationByTeamAndPeriod(team, periodId);
 
-        return feedbackReportRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
+        return nonFinalEvaluationRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
                 .map(EmployeeNonFinalEvaluationResponse::from)
                 .toList();
     }

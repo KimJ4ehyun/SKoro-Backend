@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import skala.skoro.domain.employee.dto.EmployeeSummaryResponse;
 import skala.skoro.domain.employee.repository.EmployeeRepository;
-import skala.skoro.domain.evaluation.repository.FeedbackReportRepository;
-import skala.skoro.domain.evaluation.repository.FinalEvaluationReportRepository;
+import skala.skoro.domain.evaluation.repository.NonFinalEvaluationRepository;
+import skala.skoro.domain.evaluation.repository.FinalEvaluationRepository;
 import skala.skoro.domain.kpi.dto.MyContributionResponse;
 import skala.skoro.domain.kpi.dto.MyFinalScoreResponse;
 import skala.skoro.domain.kpi.dto.MyTaskResponse;
@@ -21,8 +21,8 @@ public class MemberHomeService {
 
     private final TaskRepository taskRepository;
     private final EmployeeRepository employeeRepository;
-    private final FeedbackReportRepository feedbackReportRepository;
-    private final FinalEvaluationReportRepository finalEvaluationReportRepository;
+    private final NonFinalEvaluationRepository nonFinalEvaluationRepository;
+    private final FinalEvaluationRepository finalEvaluationRepository;
 
     public List<MyTaskResponse> getMyTasks(String empNo) {
         int thisYear = LocalDate.now().getYear();
@@ -57,10 +57,10 @@ public class MemberHomeService {
     }
 
     public List<MyContributionResponse> getMyContributions(String empNo) {
-        return feedbackReportRepository.findContributionByEmpNoGrouped(empNo);
+        return nonFinalEvaluationRepository.findContributionByEmpNoGrouped(empNo);
     }
 
     public List<MyFinalScoreResponse> getMyFinalScores(String empNo) {
-        return finalEvaluationReportRepository.findFinalScoreByEmpNoGrouped(empNo);
+        return finalEvaluationRepository.findFinalScoreByEmpNoGrouped(empNo);
     }
 }

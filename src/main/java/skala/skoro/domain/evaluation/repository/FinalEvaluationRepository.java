@@ -11,7 +11,7 @@ import skala.skoro.domain.kpi.dto.MyFinalScoreResponse;
 import java.util.List;
 import java.util.Optional;
 
-public interface FinalEvaluationReportRepository extends JpaRepository<FinalEvaluation, Long> {
+public interface FinalEvaluationRepository extends JpaRepository<FinalEvaluation, Long> {
     List<FinalEvaluation> findByTeamEvaluationIdOrderByRankingAsc(Long teamEvaluationId);
 
     Optional<FinalEvaluation> findByTeamEvaluationAndEmployee(TeamEvaluation teamEvaluation, Employee employee);
