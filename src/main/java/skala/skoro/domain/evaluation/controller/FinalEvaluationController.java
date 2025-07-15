@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import skala.skoro.domain.auth.dto.CustomUserDetails;
+import skala.skoro.domain.evaluation.dto.EmployeeFinalEvaluationResponse;
 import skala.skoro.domain.evaluation.dto.FinalEvaluationReportResponse;
 import skala.skoro.domain.evaluation.service.FinalEvaluationService;
+
+import java.util.List;
 
 @Tag(name = "최종 평가(사원)")
 @RestController
@@ -33,5 +36,12 @@ public class FinalEvaluationController {
     @GetMapping("/final-evaluation-report/{periodId}")
     public ResponseEntity<FinalEvaluationReportResponse> getFinalEvaluationReport(@PathVariable Long periodId, @AuthenticationPrincipal CustomUserDetails user) {
         return ResponseEntity.ok(finalEvaluationService.getFinalEvaluationReport(periodId, user.getUsername()));
+    }
+
+    @Operation(summary = "[팀장] 팀 관리 화면 - 최종 평가 카드 조회")
+    @PreAuthorize("hasRole('MANAGER')")
+    @GetMapping("/{periodId}/final")
+    public ResponseEntity<List<EmployeeFinalEvaluationResponse>> getFinalEmployeeSummary(@PathVariable Long periodId, @AuthenticationPrincipal CustomUserDetails user){
+        return ResponseEntity.ok(finalEvaluationService.getFinalEmployeeEvaluationsByPeriod(periodId, user.getUsername()));
     }
 }

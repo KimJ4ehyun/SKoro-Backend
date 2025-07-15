@@ -65,53 +65,12 @@ public class EmployeeService {
         return EmployeeDetailResponse.from(employeeRepository.findByEmpNo(empNo));
     }
 
-    @Transactional(readOnly = true)
-    public List<EmployeeFinalEvaluationResponse> getFinalEmployeeEvaluationsByPeriod(Long periodId, String empNo) {
-        if (!isFinal(periodId)) {
-            throw new CustomException(INVALID_FINAL_EVALUATION_REQUEST);
-        }
-
-        Team team = findEmployeeByEmpNo(empNo).getTeam();
-
-        TeamEvaluation teamEvaluation = findTeamEvaluationByTeamAndPeriod(team, periodId);
-
-        return finalEvaluationRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
-                    .map(EmployeeFinalEvaluationResponse::from)
-                    .toList();
-    }
-
-    @Transactional(readOnly = true)
-    public List<EmployeeNonFinalEvaluationResponse> getNonFinalEmployeeEvaluationsByPeriod(Long periodId, String empNo) {
-        if (isFinal(periodId)) {
-            throw new CustomException(INVALID_NON_FINAL_EVALUATION_REQUEST);
-        }
-
-        Team team = findEmployeeByEmpNo(empNo).getTeam();
-
-        TeamEvaluation teamEvaluation = findTeamEvaluationByTeamAndPeriod(team, periodId);
-
-        return nonFinalEvaluationRepository.findByTeamEvaluationIdOrderByRankingAsc(teamEvaluation.getId()).stream()
-                .map(EmployeeNonFinalEvaluationResponse::from)
-                .toList();
-    }
-
     public Employee findEmployeeByEmpNo(String empNo){
          return employeeRepository.findById(empNo)
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
     }
 
-    private TeamEvaluation findTeamEvaluationByTeamAndPeriod(Team team, Long periodId) {
-        return teamEvaluationRepository.findByTeamAndPeriodId(team, periodId)
-                .orElseThrow(() -> new CustomException(TEAM_EVALUATION_DOES_NOT_EXIST));
-    }
-
     public List<Employee> findByTeam(Team team) {
         return employeeRepository.findByTeam(team);
-    }
-
-    private boolean isFinal(Long periodId) {
-        return periodRepository.findById(periodId)
-                .orElseThrow(() -> new CustomException(PERIOD_DOES_NOT_EXIST))
-                .getIsFinal();
     }
 }

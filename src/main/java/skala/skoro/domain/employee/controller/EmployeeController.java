@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import skala.skoro.domain.auth.dto.CustomUserDetails;
 import skala.skoro.domain.employee.dto.*;
 import skala.skoro.domain.employee.service.EmployeeService;
+import skala.skoro.domain.evaluation.dto.EmployeeNonFinalEvaluationResponse;
+
 import java.util.List;
 
 @Tag(name = "사원")
@@ -40,19 +42,5 @@ public class EmployeeController {
     @GetMapping("/{empNo}")
     public ResponseEntity<EmployeeDetailResponse> getEmployeeDetailByEmpNo(@PathVariable String empNo){
         return ResponseEntity.ok(employeeService.getEmployeeDetailByEmpNo(empNo));
-    }
-
-    @Operation(summary = "[팀장] 팀 관리 화면 - 최종 평가 카드 조회")
-    @PreAuthorize("hasRole('MANAGER')")
-    @GetMapping("/{periodId}/final")
-    public ResponseEntity<List<EmployeeFinalEvaluationResponse>> getFinalEmployeeSummary(@PathVariable Long periodId, @AuthenticationPrincipal CustomUserDetails user){
-        return ResponseEntity.ok(employeeService.getFinalEmployeeEvaluationsByPeriod(periodId, user.getUsername()));
-    }
-    
-    @Operation(summary = "[팀장] 팀 관리 화면 - 분기 평가 카드 조회")
-    @PreAuthorize("hasRole('MANAGER')")
-    @GetMapping("/{periodId}/non-final")
-    public ResponseEntity<List<EmployeeNonFinalEvaluationResponse>> getNonFinalEmployeeSummary(@PathVariable Long periodId, @AuthenticationPrincipal CustomUserDetails user){
-        return ResponseEntity.ok(employeeService.getNonFinalEmployeeEvaluationsByPeriod(periodId, user.getUsername()));
     }
 }

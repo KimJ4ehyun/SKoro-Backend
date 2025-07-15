@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import skala.skoro.domain.auth.dto.CustomUserDetails;
+import skala.skoro.domain.evaluation.dto.EmployeeNonFinalEvaluationResponse;
 import skala.skoro.domain.evaluation.dto.FeedbackReportResponse;
 import skala.skoro.domain.evaluation.service.NonFinalEvaluationService;
+
+import java.util.List;
 
 @Tag(name = "최종이 아닌 평가(사원)")
 @RestController
@@ -33,5 +36,12 @@ public class NonFinalEvaluationController {
     @GetMapping("/feedback-report/{periodId}")
     public ResponseEntity<FeedbackReportResponse> getFeedbackReport(@PathVariable("periodId") Long periodId, @AuthenticationPrincipal CustomUserDetails user) {
         return ResponseEntity.ok(nonFinalEvaluationService.getFeedbackReport(periodId, user.getUsername()));
+    }
+
+    @Operation(summary = "[팀장] 팀 관리 화면 - 분기 평가 카드 조회")
+    @PreAuthorize("hasRole('MANAGER')")
+    @GetMapping("/{periodId}/non-final")
+    public ResponseEntity<List<EmployeeNonFinalEvaluationResponse>> getNonFinalEmployeeSummary(@PathVariable Long periodId, @AuthenticationPrincipal CustomUserDetails user){
+        return ResponseEntity.ok(nonFinalEvaluationService.getNonFinalEmployeeEvaluationsByPeriod(periodId, user.getUsername()));
     }
 }

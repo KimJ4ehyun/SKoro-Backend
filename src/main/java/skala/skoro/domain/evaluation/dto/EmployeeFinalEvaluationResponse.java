@@ -1,4 +1,4 @@
-package skala.skoro.domain.employee.dto;
+package skala.skoro.domain.evaluation.dto;
 
 import lombok.*;
 import skala.skoro.domain.employee.entity.Employee;
