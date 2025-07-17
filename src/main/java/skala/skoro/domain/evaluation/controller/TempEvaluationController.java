@@ -24,16 +24,16 @@ public class TempEvaluationController {
 
     @Operation(summary = "[팀장] 팀원 임시 평가 조회")
     @PreAuthorize("hasRole('MANAGER')")
-    @GetMapping("/{teamEvaluationId}")
-    public ResponseEntity<List<TempEvaluationResponse>> getTeamTempEvaluations(@PathVariable Long teamEvaluationId, @AuthenticationPrincipal CustomUserDetails user) {
-        return ResponseEntity.ok(tempEvaluationService.getTeamTempEvaluations(teamEvaluationId, user.getUsername()));
+    @GetMapping
+    public ResponseEntity<List<TempEvaluationResponse>> getTeamTempEvaluations(@AuthenticationPrincipal CustomUserDetails user) {
+        return ResponseEntity.ok(tempEvaluationService.getTeamTempEvaluations(user.getUsername()));
     }
 
     @Operation(summary = "[팀장] 해당 팀원 임시 평가 수정")
     @PreAuthorize("hasRole('MANAGER')")
-    @PutMapping("/{teamEvaluationId}/{empNo}")
-    public ResponseEntity<Void> updateTeamMemberTempEvaluations(@PathVariable Long teamEvaluationId, @PathVariable String empNo, @RequestBody TempEvaluationRequest request) {
-        tempEvaluationService.updateTeamMemberTempEvaluations(teamEvaluationId, empNo, request);
+    @PutMapping("/{empNo}")
+    public ResponseEntity<Void> updateTeamMemberTempEvaluations(@PathVariable String empNo, @RequestBody TempEvaluationRequest request) {
+        tempEvaluationService.updateTeamMemberTempEvaluations(empNo, request);
         return ResponseEntity.ok().build();
     }
 }

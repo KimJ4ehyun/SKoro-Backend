@@ -19,6 +19,7 @@ import skala.skoro.global.exception.CustomException;
 import java.util.Optional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 import static skala.skoro.global.exception.ErrorCode.INCOMPLETE_DOWNWARD_EVALUATIONS;
 import static skala.skoro.global.exception.ErrorCode.TEAM_EVALUATION_DOES_NOT_EXIST;
@@ -86,7 +87,17 @@ public class TeamEvaluationService {
         TeamEvaluation teamEvaluation = teamEvaluationRepository.findById(teamEvaluationId)
                 .orElseThrow(() -> new CustomException(TEAM_EVALUATION_DOES_NOT_EXIST));
 
-        boolean hasUncompleted = tempEvaluationRepository.existsByTeamEvaluationAndStatusNot(teamEvaluation, Status.COMPLETED);
+        List<Employee> employees = employeeService.findByTeam(teamEvaluation.getTeam());
+
+        List<String> redisKeys = employees.stream()
+                .filter(employee -> Role.MEMBER.equals(employee.getRole()))
+                .map(employee -> "TempEvaluation:" + employee.getEmpNo())
+                .toList();
+
+        Iterable<TempEvaluation> tempEvaluations = tempEvaluationRepository.findAllById(redisKeys);
+
+        boolean hasUncompleted = StreamSupport.stream(tempEvaluations.spliterator(), false)
+                .anyMatch(te -> te == null || Status.NOT_STARTED.equals(te.getStatus()));
 
         if (hasUncompleted) {
             throw new CustomException(INCOMPLETE_DOWNWARD_EVALUATIONS);

@@ -9,7 +9,6 @@ import skala.skoro.domain.evaluation.entity.TempEvaluation;
 @AllArgsConstructor
 @Builder
 public class TempEvaluationResponse {
-    private Long tempEvaluationId;
     private String empNo;
     private String aiReason;
     private Double score;
@@ -19,12 +18,11 @@ public class TempEvaluationResponse {
 
     public static TempEvaluationResponse from(TempEvaluation tempEvaluation) {
         return TempEvaluationResponse.builder()
-                .tempEvaluationId(tempEvaluation.getId())
-                .empNo(tempEvaluation.getEmployee().getEmpNo())
+                .empNo(tempEvaluation.getEmpNo())
                 .aiReason(tempEvaluation.getAiReason())
                 .score(tempEvaluation.getManagerScore() != null
                         ? tempEvaluation.getManagerScore()
-                        : tempEvaluation.getScore())
+                        : tempEvaluation.getRawScore())
                 .comment(tempEvaluation.getComment())
                 .reason(tempEvaluation.getReason())
                 .status(tempEvaluation.getStatus())

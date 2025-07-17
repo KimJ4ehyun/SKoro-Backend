@@ -32,9 +32,9 @@ public class EmployeeController {
 
     @Operation(summary = "팀원 리스트 조회(이름, 사진, 하향 평가 완료 여부)")
     @PreAuthorize("hasRole('MANAGER')")
-    @GetMapping("/{teamEvaluationId}/status")
-    public ResponseEntity<List<EmployeeSummaryAndStatusResponse>> getEmployeesAndStatusByPeriodAndTeam(@PathVariable Long teamEvaluationId, @AuthenticationPrincipal CustomUserDetails user){
-        return ResponseEntity.ok(employeeService.getEmployeesAndStatusByTeam(teamEvaluationId, user.getUsername()));
+    @GetMapping("/status")
+    public ResponseEntity<List<EmployeeSummaryAndStatusResponse>> getEmployeesAndStatusByPeriodAndTeam(@AuthenticationPrincipal CustomUserDetails user){
+        return ResponseEntity.ok(employeeService.getEmployeesAndStatusByTeam(user.getUsername()));
     }
 
     @Operation(summary = "팀원 정보 조회(동료평가)")
